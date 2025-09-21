@@ -1,31 +1,22 @@
-import apiClient from '../services/api-client'
-import { useState, useEffect } from 'react'
+import useData from "./useData";
+
+export interface Platform {
+  id: number;
+  name: string;
+  slug: string;
+}
 
 export interface Game {
-    id: number
-    name: string
-    background_image: string
+  id: number;
+  name: string;
+  background_image: string;
+  metacritic: number;
+  parent_platforms: { platform: Platform }[];
 }
 
-interface GameResponse {
-    count: number
-    results: Game[]
-}
+const useGames = () => {
+  const { data, error, isLoading } = useData<Game>("/games");
+  return { games: data, error, isLoading };
+};
 
-export const useGames = () => {
-    const [games, setGames] = useState<Game[]>([])
-    const [error, setError] = useState("")
-
-    useEffect(() => {
-        apiClient
-        .get<GameResponse>("/games")
-        .then(res => setGames(res.data.results))
-        .catch(err => {
-            setError(err.message)
-            console.log(err)
-        })
-    }, [])
-
-    return { games, error };
-}
-
+export default useGames;
