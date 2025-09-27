@@ -1,3 +1,4 @@
+import type { GameQuery } from "../App";
 import useData from "./useData";
 
 export interface Platform {
@@ -14,8 +15,18 @@ export interface Game {
   parent_platforms: { platform: Platform }[];
 }
 
-const useGames = () => {
-  const { data, error, isLoading } = useData<Game>("/games");
+const useGames = (gameQuery: GameQuery) => {
+  const { data, error, isLoading } = useData<Game>(
+    "/games",
+    {
+      params: {
+        genres: gameQuery.genre?.id,
+        platforms: gameQuery.platform?.id,
+        stores: gameQuery.store?.id,
+      },
+    },
+    [gameQuery],
+  );
   return { games: data, error, isLoading };
 };
 
