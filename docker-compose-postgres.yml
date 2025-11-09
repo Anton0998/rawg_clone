@@ -9,7 +9,7 @@ services:
     volumes:
       - ./rawg-backend:/app
     ports:
-      - "5000:5000"
+      - "5050:5000"
     environment:
       DATABASE_URL: postgres://root:rootpassword@postgres:5432/rawgDatabase
       DB_TYPE: postgres
@@ -28,7 +28,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      VITE_API_URL: http://localhost:5000
+      VITE_API_URL: http://localhost:5050
       CHOKIDAR_USEPOLLING: true # For file watching in Docker on some systems
 
   seeder:
