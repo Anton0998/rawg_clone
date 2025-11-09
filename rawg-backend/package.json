@@ -9,7 +9,8 @@
     "build": "npm install && tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --legacy-watch --exec ts-node --transpile-only index.ts",
-    "start-prod": "node dist/index.js"
+    "start-prod": "node dist/index.js",
+    "seed": "ts-node ../seeder/index.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",
