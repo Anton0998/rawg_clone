@@ -54,7 +54,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres-data_rawg:/var/lib/postgresql/data
+      - postgres-data_rawg:/var/lib/postgresql
 
 volumes:
   postgres-data_rawg:
